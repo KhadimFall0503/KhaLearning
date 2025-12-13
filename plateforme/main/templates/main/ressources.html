@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %} {% load static %} {% block content %}
+
+<section class="py-24 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-5xl font-extrabold mb-16 text-center">Ressources utiles</h2>
+    <p class="text-center text-gray-600 mb-12">
+      Retrouvez ici des liens et outils pour approfondir vos connaissances.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for resource in resources %}
+      <div
+        class="bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2"
+      >
+        <div class="flex items-center mb-4">
+          <i class="fas fa-link text-4xl text-orange-500 mr-4"></i>
+          <h3 class="text-2xl font-bold">{{ resource.title }}</h3>
+        </div>
+        <p class="text-gray-600 mb-4">{{ resource.description }}</p>
+        <a
+          href="{{ resource.url }}"
+          target="_blank"
+          class="inline-block px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded-full text-white font-semibold transition shadow-lg"
+        >
+          Accéder
+        </a>
+      </div>
+      {% empty %}
+      <p class="col-span-full text-center text-gray-500">
+        Aucune ressource pour le moment.
+      </p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

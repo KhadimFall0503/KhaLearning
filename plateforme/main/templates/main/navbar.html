@@ -1,0 +1,103 @@
+<!-- templates/main/navbar.html -->
+<nav class="bg-[#0F0F0F]/90 backdrop-blur-sm fixed w-full z-50 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+    <!-- Logo -->
+   <a href="#" class="text-2xl font-extrabold tracking-wide">
+  <span class="text-orange-500">Kha</span><span class="text-white">-Learning</span>
+</a>
+
+
+    <!-- Menu Desktop -->
+    <div class="hidden md:flex items-center space-x-8 text-gray-200 font-medium">
+      <a href="/"
+        class="pb-1 border-b-2 transition-all duration-300 
+        {% if request.path == '/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
+        Accueil
+      </a>
+
+      <a href="/formations/"
+        class="pb-1 border-b-2 transition-all duration-300 
+        {% if request.path == '/formations/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
+        Formations
+      </a>
+
+      <a href="/ressources/"
+        class="pb-1 border-b-2 transition-all duration-300 
+        {% if request.path == '/ressources/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
+        Ressources
+      </a>
+
+      <a href="/apprentissage/"
+        class="pb-1 border-b-2 transition-all duration-300 
+        {% if request.path == '/apprentissage/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
+        Mon apprentissage
+      </a>
+
+      <a href="/contact/"
+        class="pb-1 border-b-2 transition-all duration-300 
+        {% if request.path == '/contact/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
+        Contact
+      </a>
+    </div>
+
+    <!-- Hamburger Mobile -->
+    <button id="menu-toggle" class="md:hidden text-gray-200 focus:outline-none">
+      <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+
+      <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+  </div>
+
+  <!-- Menu Mobile -->
+  <div id="mobile-menu"
+    class="hidden md:hidden flex flex-col bg-[#0F0F0F]/95 backdrop-blur-lg px-6 pt-2 pb-6 space-y-4 text-gray-200 text-lg">
+    
+    <a href="/"
+      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
+      Accueil
+    </a>
+
+    <a href="/formations/"
+      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
+      Formations
+    </a>
+
+    <a href="/categories/"
+      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
+      Catégories
+    </a>
+
+    <a href="/apprentissage/"
+      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
+      Mon apprentissage
+    </a>
+
+    <a href="/contact/"
+      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
+      Contact
+    </a>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const openIcon = document.getElementById("icon-open");
+    const closeIcon = document.getElementById("icon-close");
+
+    toggle.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      openIcon.classList.toggle("hidden");
+      closeIcon.classList.toggle("hidden");
+    });
+  </script>
+</nav>

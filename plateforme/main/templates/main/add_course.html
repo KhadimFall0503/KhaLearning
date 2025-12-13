@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %} 
+{% load static %} 
+{% block content %}
+
+<h2 class="text-2xl font-bold mb-4">Ajouter un cours depuis YouTube</h2>
+
+<form method="POST">
+    {% csrf_token %}
+    <label class="block mb-2">Lien YouTube :</label>
+    <input type="url" name="youtube_url" class="border p-2 w-full mb-4" required>
+
+    <label class="block mb-2">Catégorie :</label>
+    <select name="category" class="border p-2 w-full mb-4" required>
+        {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" class="px-4 py-2 bg-orange-500 text-white rounded">Ajouter le cours</button>
+</form>
+
+{% endblock %}
