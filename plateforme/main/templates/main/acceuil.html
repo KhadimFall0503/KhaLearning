@@ -1,94 +1,42 @@
-{% extends 'main/base.html' %} {% load static %} {% block content %}
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
 
 <!-- ================= CAROUSEL ================= -->
 <div class="relative w-full overflow-hidden">
   <div id="carousel" class="relative h-[520px] overflow-hidden">
     <!-- Slide 1 -->
-    <div
-      class="absolute inset-0 slide opacity-100 transition-opacity duration-1000"
-    >
-      <img
-        src="{% static 'main/images/heros1.jpg' %}"
-        class="w-full h-full object-cover"
-      />
-      <div
-        class="absolute inset-0 bg-black/70 flex items-center justify-start p-12"
-      >
-        <div
-          class="max-w-3xl text-white p-6 md:p-8 bg-black/50 rounded-xl shadow-lg"
-        >
-          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
-            Boostez vos compétences
-          </h2>
-          <p class="text-lg md:text-xl mb-4">
-            Formations pratiques pour le digital moderne.
-          </p>
-          <a
-            href="#courses"
-            class="px-5 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg"
-          >
-            En savoir plus
-          </a>
+    <div class="absolute inset-0 slide opacity-100 transition-opacity duration-1000">
+      <img src="{% static 'main/images/heros1.jpg' %}" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/70 flex items-center justify-start p-12">
+        <div class="max-w-3xl text-white p-6 md:p-8 bg-black/50 rounded-xl shadow-lg">
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Boostez vos compétences</h2>
+          <p class="text-lg md:text-xl mb-4">Formations pratiques pour le digital moderne.</p>
+          <a href="#courses" class="px-5 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg">En savoir plus</a>
         </div>
       </div>
     </div>
 
     <!-- Slide 2 -->
-    <div
-      class="absolute inset-0 slide opacity-0 transition-opacity duration-1000"
-    >
-      <img
-        src="{% static 'main/images/heros2.jpg' %}"
-        class="w-full h-full object-cover"
-      />
-      <div
-        class="absolute inset-0 bg-black/70 flex items-center justify-start p-12"
-      >
-        <div
-          class="max-w-3xl text-white p-6 md:p-8 bg-black/50 rounded-xl shadow-lg"
-        >
-          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
-            Apprendre par la pratique
-          </h2>
-          <p class="text-lg md:text-xl mb-4">
-            Des projets réels pour progresser rapidement.
-          </p>
-          <a
-            href="#courses"
-            class="px-5 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg"
-          >
-            Découvrir
-          </a>
+    <div class="absolute inset-0 slide opacity-0 transition-opacity duration-1000">
+      <img src="{% static 'main/images/heros2.jpg' %}" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/70 flex items-center justify-start p-12">
+        <div class="max-w-3xl text-white p-6 md:p-8 bg-black/50 rounded-xl shadow-lg">
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Apprendre par la pratique</h2>
+          <p class="text-lg md:text-xl mb-4">Des projets réels pour progresser rapidement.</p>
+          <a href="#courses" class="px-5 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg">Découvrir</a>
         </div>
       </div>
     </div>
 
     <!-- Slide 3 -->
-    <div
-      class="absolute inset-0 slide opacity-0 transition-opacity duration-1000"
-    >
-      <img
-        src="{% static 'main/images/heros3.jpg' %}"
-        class="w-full h-full object-cover"
-      />
-      <div
-        class="absolute inset-0 bg-black/70 flex items-center justify-start p-12"
-      >
-        <div
-          class="max-w-3xl text-white p-6 md:p-8 bg-black/50 rounded-xl shadow-lg"
-        >
-          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">
-            Avançons ensemble
-          </h2>
-          <p class="text-lg md:text-xl mb-4">
-            Une communauté engagée et motivée.
-          </p>
-          <a
-            href="#courses"
-            class="px-5 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg"
-          >
-            Rejoindre
-          </a>
+    <div class="absolute inset-0 slide opacity-0 transition-opacity duration-1000">
+      <img src="{% static 'main/images/heros3.jpg' %}" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-black/70 flex items-center justify-start p-12">
+        <div class="max-w-3xl text-white p-6 md:p-8 bg-black/50 rounded-xl shadow-lg">
+          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Avançons ensemble</h2>
+          <p class="text-lg md:text-xl mb-4">Une communauté engagée et motivée.</p>
+          <a href="#courses" class="px-5 py-2 md:px-6 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg">Rejoindre</a>
         </div>
       </div>
     </div>
@@ -107,7 +55,7 @@
   const indicators = document.querySelectorAll(".indicator");
   let current = 0;
   function showSlide(i) {
-    slides.forEach((s, index) => (s.style.opacity = index === i ? "1" : "0"));
+    slides.forEach((s, index) => s.style.opacity = index === i ? "1" : "0");
     indicators.forEach((d, index) => {
       d.classList.toggle("bg-orange-500", index === i);
       d.classList.toggle("bg-gray-300", index !== i);
@@ -122,42 +70,28 @@
 <!-- ================= NOS DOMAINES ================= -->
 <section class="py-24 bg-gray-50">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-5xl font-extrabold mb-16 text-center">
-      Nos domaines de formation
-    </h2>
+    <h2 class="text-5xl font-extrabold mb-16 text-center">Nos domaines de formation</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      <div
-        class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 text-center"
-      >
+      <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 text-center">
         <div class="flex justify-center mb-4">
           <i class="fas fa-code text-6xl text-orange-500"></i>
         </div>
         <h3 class="text-2xl font-bold mb-2">Développement Web</h3>
-        <p class="text-gray-600 text-sm">
-          HTML, CSS, JavaScript, Django, React et projets concrets.
-        </p>
+        <p class="text-gray-600 text-sm">HTML, CSS, JavaScript, Django, React et projets concrets.</p>
       </div>
-      <div
-        class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 text-center"
-      >
+      <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 text-center">
         <div class="flex justify-center mb-4">
           <i class="fas fa-database text-6xl text-orange-500"></i>
         </div>
         <h3 class="text-2xl font-bold mb-2">Data & Analyse</h3>
-        <p class="text-gray-600 text-sm">
-          Python, SQL, analyse de données et visualisation.
-        </p>
+        <p class="text-gray-600 text-sm">Python, SQL, analyse de données et visualisation.</p>
       </div>
-      <div
-        class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 text-center"
-      >
+      <div class="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-2 text-center">
         <div class="flex justify-center mb-4">
           <i class="fas fa-shield-alt text-6xl text-orange-500"></i>
         </div>
         <h3 class="text-2xl font-bold mb-2">Cybersécurité</h3>
-        <p class="text-gray-600 text-sm">
-          Sécurité informatique, bonnes pratiques et protection.
-        </p>
+        <p class="text-gray-600 text-sm">Sécurité informatique, bonnes pratiques et protection.</p>
       </div>
     </div>
   </div>
@@ -167,46 +101,24 @@
 <section class="py-20 bg-white" id="courses">
   <div class="max-w-7xl mx-auto px-6">
     <h2 class="text-5xl font-extrabold mb-12 text-center">Cours à la une</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-8">
       {% for course in featured_courses %}
-      <div
-        class="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 overflow-hidden"
-      >
+      <div class="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 overflow-hidden">
         {% if course.youtube_url %}
-        <span
-          class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10"
-          >YouTube</span
-        >
+        <span class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10">YouTube</span>
         {% endif %}
         <a href="{% url 'course_detail' course.id %}">
-          <img
-            src="{% if course.youtube_thumbnail %}{{ course.youtube_thumbnail }}{% elif course.image %}{{ course.image.url }}{% else %}{% static 'main/images/default-course.jpg' %}{% endif %}"
-            class="w-full h-64 object-cover rounded-t-2xl transition-transform duration-300 hover:scale-105"
-            alt="{{ course.title }} thumbnail"
-          />
+          <img src="{% if course.youtube_thumbnail %}{{ course.youtube_thumbnail }}{% elif course.image %}{{ course.image.url }}{% else %}{% static 'main/images/default-course.jpg' %}{% endif %}" class="w-full h-64 object-cover rounded-t-2xl transition-transform duration-300 hover:scale-105" alt="{{ course.title }} thumbnail" />
         </a>
         <div class="p-6">
-          <h3 class="text-2xl font-bold mb-2 line-clamp-2">
-            {{ course.title }}
-          </h3>
-          <p class="text-gray-700 mb-4 line-clamp-3">
-            {{ course.description|truncatewords:20 }}
-          </p>
-          <p class="text-sm text-gray-500 mb-4">
-            Catégorie: {{ course.category.name }}
-          </p>
-          <a
-            href="{% url 'course_detail' course.id %}"
-            class="inline-block px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-full hover:scale-105 transition transform font-semibold shadow-lg"
-          >
-            Voir le cours
-          </a>
+          <h3 class="text-2xl font-bold mb-2 line-clamp-2">{{ course.title }}</h3>
+          <p class="text-gray-700 mb-4 line-clamp-3">{{ course.description|truncatewords:20 }}</p>
+          <p class="text-sm text-gray-500 mb-4">Catégorie: {{ course.category.name }}</p>
+          <a href="{% url 'course_detail' course.id %}" class="inline-block px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-full hover:scale-105 transition transform font-semibold shadow-lg">Voir le cours</a>
         </div>
       </div>
       {% empty %}
-      <p class="col-span-full text-center text-gray-500">
-        Aucun cours à la une pour le moment.
-      </p>
+      <p class="col-span-full text-center text-gray-500">Aucun cours à la une pour le moment.</p>
       {% endfor %}
     </div>
   </div>
@@ -215,37 +127,111 @@
 <!-- ================= EXPLICATION DE LA PLATEFORME ================= -->
 <section class="py-24 bg-gray-50">
   <div class="max-w-7xl mx-auto px-6">
-    <h2 class="text-5xl font-extrabold mb-16 text-center">
-      Notre plateforme de formation
-    </h2>
+    <h2 class="text-5xl font-extrabold mb-16 text-center">Notre plateforme de formation</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <div>
-        <img
-          src="{% static 'main/images/heros2.jpg' %}"
-          class="h-96 w-full object-cover rounded-2xl shadow-lg"
-        />
+        <img src="{% static 'main/images/heros2.jpg' %}" class="h-96 w-full object-cover rounded-2xl shadow-lg" />
       </div>
       <div>
-        <h3 class="text-4xl font-bold mb-6">
-          Apprendre efficacement et durablement
-        </h3>
-        <p class="text-lg mb-6">
-          Une plateforme conçue pour vous accompagner pas à pas, avec des
-          formations claires, structurées et orientées résultats.
-        </p>
-        <p class="text-lg mb-8">
-          Progressez à votre rythme, accédez aux cours, développez des
-          compétences recherchées et construisez votre avenir professionnel.
-        </p>
-        <a
-          href="#courses"
-          class="px-6 py-2 md:px-8 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg"
-        >
-          Explorer les formations
-        </a>
+        <h3 class="text-4xl font-bold mb-6">Apprendre efficacement et durablement</h3>
+        <p class="text-lg mb-6">Une plateforme conçue pour vous accompagner pas à pas, avec des formations claires, structurées et orientées résultats.</p>
+        <p class="text-lg mb-8">Progressez à votre rythme, accédez aux cours, développez des compétences recherchées et construisez votre avenir professionnel.</p>
+        <a href="formations" class="px-6 py-2 md:px-8 md:py-3 bg-gradient-to-r from-orange-400 to-orange-600 hover:scale-105 transition transform rounded-full text-white font-semibold shadow-lg">Explorer les formations</a>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ================= TÉMOIGNAGES ================= -->
+<section class="py-24 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-6"> 
+    <h2 class="text-5xl font-extrabold text-center mb-4">Ils en parlent mieux que nous</h2> 
+    <p class="text-center text-gray-600 mb-16">Les avis les plus récents de nos étudiants.</p> 
+    <div id="testimonial-card" class="bg-white p-8 rounded-2xl shadow max-w-4xl mx-auto"></div>
+    <div class="flex justify-center gap-2 mt-10" id="testimonial-pagination"></div>
+  </div>
+</section>
+
+<script>
+const testimonials = [
+  { 
+    initial: "E", 
+    name: "Emmanuel GUERIN", 
+    date: "10 février 2025", 
+    stars: 5, 
+    title: "Cours Python", 
+    content: "Formation très complète avec mentorats, quiz et exercices pratiques." 
+  },
+  { 
+    initial: "A", 
+    name: "Awa Ndiaye", 
+    date: "02 mars 2025", 
+    stars: 5, 
+    title: "Développement Web", 
+    content: "Excellente pédagogie, projets concrets et bien expliqués." 
+  },
+  { 
+    initial: "M", 
+    name: "Mamadou DIA", 
+    date: "15 mars 2025", 
+    stars: 4, 
+    title: "Analyse de données", 
+    content: "Les exercices pratiques m'ont beaucoup aidé à comprendre les concepts." 
+  },
+  { 
+    initial: "S", 
+    name: "Seynabou FALL", 
+    date: "20 mars 2025", 
+    stars: 5, 
+    title: "Cybersécurité", 
+    content: "Contenu très structuré et facilement compréhensible pour débutants." 
+  },
+  { 
+    initial: "O", 
+    name: "Ousseynou SALL", 
+    date: "28 mars 2025", 
+    stars: 5, 
+    title: "Développement Frontend", 
+    content: "Projets concrets et accompagnement clair, idéal pour progresser rapidement." 
+  }
+];
+
+const card = document.getElementById("testimonial-card");
+const pagination = document.getElementById("testimonial-pagination");
+let idx = 0;
+
+function renderTestimonial(i){
+  const t = testimonials[i];
+  card.innerHTML = `
+    <div class="flex gap-6">
+      <div class="w-14 h-14 rounded-full bg-gray-300 flex items-center justify-center font-bold text-xl">${t.initial}</div>
+      <div>
+        <h4 class="font-bold text-lg">${t.name}</h4>
+        <div class="text-yellow-400">${'★'.repeat(t.stars)}</div>
+        <p class="font-semibold mt-2">${t.title}</p>
+        <p class="text-gray-600 mt-1">${t.content}</p>
+      </div>
+    </div>
+  `;
+}
+
+testimonials.forEach((_, i) => {
+  const b = document.createElement("button");
+  b.textContent = i+1;
+  b.className = "w-9 h-9 border rounded-full";
+  b.onclick = () => { idx = i; renderTestimonial(i); updatePagination(); };
+  pagination.appendChild(b);
+});
+
+function updatePagination() {
+  Array.from(pagination.children).forEach((btn, i) => {
+    btn.classList.toggle('bg-orange-500', i === idx);
+    btn.classList.toggle('bg-white', i !== idx);
+  });
+}
+
+renderTestimonial(0);
+updatePagination();
+</script>
 
 {% endblock %}
