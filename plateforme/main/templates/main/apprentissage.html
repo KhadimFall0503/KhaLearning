@@ -1,0 +1,52 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="py-24 bg-gray-50">
+<div class="max-w-7xl mx-auto ">
+    <h1 class="text-4xl font-extrabold mb-8 text-center text-gray-800">Mes cours</h1>
+
+    {% if courses %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for course in courses %}
+                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                    <!-- Image / Miniature -->
+                    {% if course.youtube_thumbnail %}
+                        <a href="{% url 'course_detail' course.id %}" target="_blank" class="relative block">
+                            <img src="{{ course.youtube_thumbnail }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg class="w-12 h-12 text-white" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M10 8l6 4-6 4V8z"/>
+                                </svg>
+                            </div>
+                        </a>
+                    {% elif course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% else %}
+                        <img src="{% static 'main/images/default_course.jpg' %}" alt="{{ course.title }}" class="w-full h-48 object-cover">
+                    {% endif %}
+
+                    <!-- Contenu -->
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-xl font-semibold mb-2">{{ course.title }}</h3>
+                        <p class="text-gray-600 mb-4 flex-grow">{{ course.description|truncatechars:100 }}</p>
+                        <p class="text-sm text-gray-500 mb-4">Durée : {{ course.duration_display }}</p>
+
+                        <div class="flex justify-between items-center mt-auto">
+                            <a href="{% url 'course_detail' course.id %}" class="bg-gradient-to-r from-orange-400 to-orange-600 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition">Voir</a>
+
+                            <form action="{% url 'remove_from_learning' course.id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="bg-[#0F0F0F] text-white px-4 py-2 rounded-lg hover:bg-red-600 transition">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-gray-600 mt-12">Vous n'avez pas encore ajouté de cours à votre apprentissage.</p>
+    {% endif %}
+</div>
+</section>
+{% endblock %}

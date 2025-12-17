@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Course, Category, Resource, ResourceCategory
+from .models import Course, Category, Resource, ResourceCategory, Contact, Learning
 
 # ===================== ADMIN CATEGORIES =====================
 @admin.register(Category)
@@ -22,6 +22,13 @@ class CourseAdmin(admin.ModelAdmin):
         }),
     )
 
+# ===================== ADMIN MON APPRENTISSAGE =====================
+@admin.register(Learning)
+class LearningAdmin(admin.ModelAdmin):
+    list_display = ('user', 'course', 'added_at')
+    list_filter = ('course', 'added_at')
+    search_fields = ('user__username', 'course__title')
+
 # ===================== ADMIN CATEGORIES DE RESSOURCES =====================
 @admin.register(ResourceCategory)
 class ResourceCategoryAdmin(admin.ModelAdmin):
@@ -41,3 +48,9 @@ class ResourceAdmin(admin.ModelAdmin):
             )
         }),
     )
+
+# ===================== ADMIN CONTACT =====================
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'message')
+    search_fields = ('name', 'email', 'message')

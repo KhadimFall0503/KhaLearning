@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from urllib.parse import urlparse, parse_qs
+from django.contrib.auth.models import User
 
 # ===================== CATEGORIES DE COURS =====================
 class Category(models.Model):
@@ -74,6 +75,19 @@ class Course(models.Model):
     def learning_points_list(self):
         return self.learning_points.splitlines()
 
+# ===================== MON APPRENTISSAGE =====================
+class Learning(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="learning_courses")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="learners")
+    added_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'course')
+        ordering = ['-added_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.course.title}"
+
 # ===================== CATEGORIES DE RESSOURCES =====================
 class ResourceCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -104,3 +118,15 @@ class Resource(models.Model):
 
     def __str__(self):
         return self.title
+
+# ===================== CONTACT =====================
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+   
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return f"Message from {self.name} - {self.message[:20]}..."

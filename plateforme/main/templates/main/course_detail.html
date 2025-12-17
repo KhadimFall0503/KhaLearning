@@ -29,11 +29,10 @@
             Démarrer
           </a>
           {% endif %}
-          <button
-            class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-200 transition"
-          >
-            Ajouter aux favoris
-          </button>
+          <a href="{% url 'add_to_learning' course.id %}"
+   class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-200 transition">
+   Mettre dans liste apprentissage
+</a>
         </div>
       </div>
 
