@@ -1,605 +1,223 @@
-{% extends 'main/base.html' %}
-{% load static %}
-{% block content %}
+﻿{% extends 'main/base.html' %} {% load static %} {% block content %}
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap');
+<section class="bg-white">
+  <div class="page-content">
+    <div class="grid lg:grid-cols-2 gap-12 items-center py-20 lg:py-32">
+      <div>
+        <span
+          class="inline-block px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-semibold"
+        >
+          Formation en ligne
+        </span>
 
-:root {
-  --orange:       #ea580c;
-  --orange-mid:   #f97316;
-  --orange-light: #fb923c;
-  --orange-pale:  #fff7ed;
-  --dark:         #0c0f14;
-  --dark-mid:     #111827;
-  --gray-50:      #f9fafb;
-  --gray-100:     #f3f4f6;
-  --gray-200:     #e5e7eb;
-  --gray-400:     #9ca3af;
-  --gray-600:     #4b5563;
-  --gray-800:     #1f2937;
-  --gray-900:     #111827;
-  --white:        #ffffff;
-}
+        <h1
+          class="mt-6 text-5xl lg:text-6xl font-bold text-slate-900 leading-tight"
+        >
+          Développez vos
+          <span class="text-orange-600">compétences</span>
+          pour le futur
+        </h1>
 
-.pg * { box-sizing: border-box; }
-.pg { font-family: 'DM Sans', sans-serif; }
+        <p class="mt-6 text-lg text-slate-600 leading-relaxed">
+          Apprenez le développement web, l'intelligence artificielle, le cloud
+          computing et bien plus encore grâce à des cours conçus par des experts
+          du secteur.
+        </p>
 
-/* ── HERO ── */
-.pg-hero {
-  position: relative;
-  height: 600px;
-  overflow: hidden;
-}
-.hero-slides { position: absolute; inset: 0; }
-.hero-slide {
-  position: absolute; inset: 0;
-  opacity: 0; transition: opacity 1s ease;
-}
-.hero-slide.active { opacity: 1; }
-.hero-slide img {
-  width: 100%; height: 100%; object-fit: cover;
-}
-.hero-slide::after {
-  content: '';
-  position: absolute; inset: 0;
-  background: linear-gradient(105deg, rgba(12,15,20,0.85) 40%, rgba(12,15,20,0.4) 100%);
-}
-
-.hero-content {
-  position: absolute; inset: 0; z-index: 2;
-  display: flex; align-items: center;
-  padding: 0 80px;
-}
-.hero-text { max-width: 600px; }
-
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 5px 14px 5px 8px;
-  background: rgba(234,88,12,0.15);
-  border: 1px solid rgba(249,115,22,0.3);
-  border-radius: 999px;
-  font-size: 12px; font-weight: 600;
-  color: #fb923c; margin-bottom: 20px;
-  opacity: 0; transform: translateY(16px);
-  animation: slideUp 0.8s 0.2s forwards;
-}
-.hero-eyebrow-dot {
-  width: 16px; height: 16px;
-  background: rgba(249,115,22,0.2); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-}
-.hero-eyebrow-dot::after {
-  content: ''; display: block;
-  width: 6px; height: 6px;
-  background: var(--orange-mid); border-radius: 50%;
-  animation: blink 2s infinite;
-}
-
-.hero-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(36px, 4.5vw, 60px);
-  font-weight: 900; color: white;
-  line-height: 1.06; letter-spacing: -0.03em;
-  margin-bottom: 18px;
-  opacity: 0; transform: translateY(20px);
-  animation: slideUp 0.8s 0.4s forwards;
-}
-.hero-title .ht-grad {
-  background: linear-gradient(135deg, #fb923c, #fde68a);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-
-.hero-desc {
-  font-size: 17px; color: rgba(255,255,255,0.65);
-  line-height: 1.75; margin-bottom: 32px; max-width: 480px;
-  opacity: 0; transform: translateY(20px);
-  animation: slideUp 0.8s 0.6s forwards;
-}
-
-.hero-btns {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  opacity: 0; transform: translateY(20px);
-  animation: slideUp 0.8s 0.8s forwards;
-}
-.hero-btn-p {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 26px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-mid));
-  color: white; font-size: 14px; font-weight: 700;
-  border-radius: 10px; text-decoration: none;
-  font-family: 'DM Sans', sans-serif;
-  box-shadow: 0 8px 28px rgba(234,88,12,0.35);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.hero-btn-p:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(234,88,12,0.45); }
-.hero-btn-s {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 22px;
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 600;
-  border-radius: 10px; border: 1px solid rgba(255,255,255,0.15);
-  text-decoration: none; font-family: 'DM Sans', sans-serif;
-  transition: background 0.2s;
-}
-.hero-btn-s:hover { background: rgba(255,255,255,0.14); }
-
-/* Slide indicators */
-.hero-indicators {
-  position: absolute; bottom: 28px; left: 50%;
-  transform: translateX(-50%); z-index: 3;
-  display: flex; gap: 8px;
-}
-.hero-dot {
-  width: 8px; height: 8px; border-radius: 999px;
-  background: rgba(255,255,255,0.3);
-  transition: background 0.3s, width 0.3s;
-  cursor: pointer;
-}
-.hero-dot.active { background: var(--orange-mid); width: 24px; }
-
-/* ── SHARED SECTION ── */
-.pg-section { padding: 96px 80px; }
-.pg-section-inner { max-width: 1200px; margin: 0 auto; }
-.pg-header { text-align: center; margin-bottom: 64px; }
-
-.pg-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 14px;
-}
-.pg-badge::before { content: ''; display: block; width: 18px; height: 2px; background: var(--orange); }
-
-.pg-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(28px, 3vw, 44px); font-weight: 800;
-  color: var(--gray-900); letter-spacing: -0.03em; margin-bottom: 14px; line-height: 1.1;
-}
-.pg-title span { color: var(--orange); }
-.pg-desc { font-size: 15px; color: var(--gray-600); line-height: 1.75; max-width: 520px; margin: 0 auto; }
-.pg-line { width: 48px; height: 3px; background: linear-gradient(90deg, var(--orange), var(--orange-light)); border-radius: 2px; margin: 0 auto 18px; }
-
-/* ── DOMAINES ── */
-.domaines { background: var(--gray-50); }
-.dom-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-.dom-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: 16px; padding: 36px 28px; text-align: center;
-  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-  position: relative; overflow: hidden;
-}
-.dom-card::after {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--orange), var(--orange-light));
-  transform: scaleX(0); transition: transform 0.3s;
-}
-.dom-card:hover { border-color: rgba(234,88,12,0.2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(234,88,12,0.08); }
-.dom-card:hover::after { transform: scaleX(1); }
-.dom-icon {
-  width: 64px; height: 64px; border-radius: 16px;
-  background: var(--orange-pale); border: 1px solid rgba(234,88,12,0.15);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 26px; color: var(--orange); margin: 0 auto 20px;
-}
-.dom-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 17px; font-weight: 800; color: var(--gray-900); margin-bottom: 8px;
-}
-.dom-text { font-size: 13px; color: var(--gray-600); line-height: 1.65; }
-
-/* ── COURS ── */
-.cours { background: var(--white); }
-.cours-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
-.cours-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: 16px; overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  position: relative;
-}
-.cours-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(15,23,42,0.1); border-color: rgba(234,88,12,0.2); }
-.cours-img-wrap { position: relative; overflow: hidden; }
-.cours-img {
-  width: 100%; height: 220px; object-fit: cover;
-  transition: transform 0.4s;
-}
-.cours-card:hover .cours-img { transform: scale(1.04); }
-.cours-yt-badge {
-  position: absolute; top: 12px; left: 12px;
-  display: inline-flex; align-items: center; gap: 5px;
-  padding: 4px 10px;
-  background: #dc2626; border-radius: 999px;
-  font-size: 10px; font-weight: 700; color: white; letter-spacing: 0.04em;
-}
-.cours-overlay {
-  position: absolute; inset: 0;
-  background: rgba(12,15,20,0.4);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity 0.3s;
-}
-.cours-card:hover .cours-overlay { opacity: 1; }
-.cours-play {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: rgba(255,255,255,0.95);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: var(--orange);
-}
-.cours-body { padding: 20px 22px; }
-.cours-cat {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--orange); margin-bottom: 8px;
-}
-.cours-title {
-  font-family: 'Outfit', sans-serif;
-  font-size: 16px; font-weight: 800; color: var(--gray-900);
-  margin-bottom: 8px; line-height: 1.3;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
-}
-.cours-desc {
-  font-size: 13px; color: var(--gray-600); line-height: 1.6; margin-bottom: 16px;
-  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-}
-.cours-footer { display: flex; align-items: center; justify-content: space-between; }
-.cours-btn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 9px 18px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-mid));
-  color: white; font-size: 12px; font-weight: 700;
-  border-radius: 8px; text-decoration: none;
-  transition: opacity 0.2s, transform 0.15s;
-  box-shadow: 0 4px 14px rgba(234,88,12,0.25);
-}
-.cours-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-.cours-empty { grid-column: 1/-1; text-align: center; padding: 48px; color: var(--gray-400); font-size: 15px; }
-
-/* ── PLATEFORME ── */
-.plateforme { background: var(--gray-900); position: relative; overflow: hidden; }
-.plateforme::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-.plat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 1; }
-.plat-img-wrap { position: relative; }
-.plat-img { width: 100%; border-radius: 16px; display: block; box-shadow: 0 24px 64px rgba(0,0,0,0.4); object-fit: cover; min-height: 380px; }
-.plat-img-badge {
-  position: absolute; bottom: -14px; left: -14px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-mid));
-  border-radius: 12px; padding: 14px 18px; text-align: center;
-  box-shadow: 0 8px 24px rgba(234,88,12,0.4);
-}
-.plat-img-badge .num { font-family: 'Outfit', sans-serif; font-size: 26px; font-weight: 900; color: white; display: block; line-height: 1; }
-.plat-img-badge .lbl { font-size: 10px; color: rgba(255,255,255,0.75); text-transform: uppercase; letter-spacing: 0.08em; }
-.plat-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
-.plat-eyebrow::before { content: ''; display: block; width: 24px; height: 2px; background: var(--orange-mid); }
-.plat-eyebrow span { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-mid); }
-.plat-title { font-family: 'Outfit', sans-serif; font-size: clamp(26px, 2.8vw, 40px); font-weight: 800; color: white; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 18px; }
-.plat-text { font-size: 15px; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 14px; }
-.plat-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 13px 26px; margin-top: 10px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-mid));
-  color: white; font-size: 14px; font-weight: 700;
-  border-radius: 10px; text-decoration: none;
-  box-shadow: 0 8px 24px rgba(234,88,12,0.35);
-  transition: opacity 0.2s, transform 0.15s;
-}
-.plat-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-.plat-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
-.plat-pill {
-  padding: 6px 14px;
-  background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.2);
-  border-radius: 999px; font-size: 12px; font-weight: 600; color: #fb923c;
-}
-
-/* ── TÉMOIGNAGES ── */
-.temoignages { background: var(--gray-50); }
-.testi-wrapper { max-width: 760px; margin: 0 auto; }
-.testi-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: 20px; padding: 36px;
-  box-shadow: 0 4px 32px rgba(15,23,42,0.06);
-  position: relative; overflow: hidden;
-  min-height: 200px;
-}
-.testi-card::before {
-  content: '"';
-  position: absolute; top: 20px; right: 28px;
-  font-family: 'Outfit', sans-serif;
-  font-size: 100px; font-weight: 900; color: var(--orange-pale);
-  line-height: 1;
-}
-.testi-top { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-.testi-avatar {
-  width: 48px; height: 48px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--orange), var(--orange-light));
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 18px; color: white;
-  flex-shrink: 0;
-}
-.testi-name { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 800; color: var(--gray-900); }
-.testi-date { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
-.testi-stars { color: #f59e0b; font-size: 14px; letter-spacing: 2px; margin-bottom: 6px; }
-.testi-course { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--orange); margin-bottom: 10px; }
-.testi-text { font-size: 15px; color: var(--gray-600); line-height: 1.75; font-style: italic; }
-.testi-pager {
-  display: flex; justify-content: center; gap: 8px; margin-top: 24px;
-}
-.testi-dot {
-  width: 8px; height: 8px; border-radius: 999px;
-  background: var(--gray-200); border: none; cursor: pointer; padding: 0;
-  transition: background 0.2s, width 0.2s;
-}
-.testi-dot.active { background: var(--orange-mid); width: 24px; }
-
-/* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s, transform 0.7s; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-@keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-@media (max-width: 1024px) {
-  .pg-section { padding: 72px 40px; }
-  .hero-content { padding: 0 48px; }
-  .plat-grid { grid-template-columns: 1fr; gap: 48px; }
-}
-@media (max-width: 768px) {
-  .dom-grid, .cours-grid { grid-template-columns: 1fr; }
-  .pg-section { padding: 56px 20px; }
-  .hero-content { padding: 0 24px; }
-  .pg-hero { height: 520px; }
-}
-</style>
-
-<div class="pg">
-
-<!-- ── HERO CAROUSEL ── -->
-<section class="pg-hero">
-  <div class="hero-slides">
-
-    <div class="hero-slide active">
-      <img src="{% static 'main/images/heros1.jpg' %}" alt="Slide 1">
-    </div>
-    <div class="hero-slide">
-      <img src="{% static 'main/images/heros2.jpg' %}" alt="Slide 2">
-    </div>
-    <div class="hero-slide">
-      <img src="{% static 'main/images/heros3.jpg' %}" alt="Slide 3">
-    </div>
-  </div>
-
-  <div class="hero-content">
-    <div class="hero-text">
-      <div class="hero-eyebrow">
-        <div class="hero-eyebrow-dot"></div>
-        Plateforme de formation digitale
-      </div>
-      <h1 class="hero-title">
-        Boostez vos<br>
-        <span class="ht-grad">compétences digitales</span>
-      </h1>
-      <p class="hero-desc" id="hero-desc">Formations pratiques pour le digital moderne, adaptées à votre rythme.</p>
-      <div class="hero-btns">
-        <a href="#courses" class="hero-btn-p">
-          <i class="fas fa-play"></i> Commencer maintenant
-        </a>
-        <a href="#plateforme" class="hero-btn-s">
-          <i class="fas fa-circle-info"></i> En savoir plus
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-indicators">
-    <div class="hero-dot active"></div>
-    <div class="hero-dot"></div>
-    <div class="hero-dot"></div>
-  </div>
-</section>
-
-<!-- ── DOMAINES ── -->
-<section class="pg-section domaines" id="domaines">
-  <div class="pg-section-inner">
-    <div class="pg-header reveal">
-      
-      <h2 class="pg-title">Formations <span>spécialisées</span></h2>
-      <div class="pg-line"></div>
-      <p class="pg-desc">Des parcours structurés pour maîtriser les compétences les plus recherchées du marché.</p>
-    </div>
-    <div class="dom-grid reveal">
-      <div class="dom-card">
-        <div class="dom-icon"><i class="fas fa-code"></i></div>
-        <div class="dom-title">Développement Web</div>
-        <p class="dom-text">HTML, CSS, JavaScript, Django, React et projets concrets pour devenir développeur Full-Stack.</p>
-      </div>
-      <div class="dom-card">
-        <div class="dom-icon"><i class="fas fa-database"></i></div>
-        <div class="dom-title">Data & Analyse</div>
-        <p class="dom-text">Python, SQL, analyse de données, visualisation et machine learning pour dompter vos données.</p>
-      </div>
-      <div class="dom-card">
-        <div class="dom-icon"><i class="fas fa-shield-alt"></i></div>
-        <div class="dom-title">Cybersécurité</div>
-        <p class="dom-text">Sécurité informatique, bonnes pratiques, protection des systèmes et gestion des vulnérabilités.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── COURS À LA UNE ── -->
-<section class="pg-section cours" id="courses">
-  <div class="pg-section-inner">
-    <div class="pg-header reveal">
-      
-      <h2 class="pg-title">Nos formations <span>phares</span></h2>
-      <div class="pg-line"></div>
-      <p class="pg-desc">Sélection de nos meilleurs cours, choisis par des milliers d'apprenants.</p>
-    </div>
-    <div class="cours-grid reveal">
-      {% for course in featured_courses %}
-      <div class="cours-card">
-        <div class="cours-img-wrap">
-          {% if course.youtube_url %}
-          <div class="cours-yt-badge"><i class="fab fa-youtube"></i> YouTube</div>
-          {% endif %}
-          <img
-            src="{% if course.youtube_thumbnail %}{{ course.youtube_thumbnail }}{% elif course.image %}{{ course.image.url }}{% else %}{% static 'main/images/default-course.jpg' %}{% endif %}"
-            class="cours-img" alt="{{ course.title }}">
-          <div class="cours-overlay">
-            <div class="cours-play"><i class="fas fa-play"></i></div>
-          </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/formations/"
+            class="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-semibold transition inline-block"
+          >
+            Commencer maintenant
+          </a>
+          <a
+            href="/formations/"
+            class="border border-slate-300 hover:border-orange-600 hover:text-orange-600 px-8 py-4 rounded-xl font-semibold transition inline-block text-slate-700"
+          >
+            Voir les formations
+          </a>
         </div>
-        <div class="cours-body">
-          <div class="cours-cat">{{ course.category.name }}</div>
-          <div class="cours-title">{{ course.title }}</div>
-          <p class="cours-desc">{{ course.description|truncatewords:20 }}</p>
-          <div class="cours-footer">
-            <a href="{% url 'course_detail' course.id %}" class="cours-btn">
-              Voir le cours <i class="fas fa-arrow-right"></i>
+      </div>
+
+      <div class="relative">
+        <div
+          class="absolute -top-6 -left-6 w-40 h-40 bg-orange-100 rounded-full blur-3xl"
+        ></div>
+
+        <img
+          src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+          alt="Étudiants"
+          class="rounded-3xl shadow-2xl relative z-10"
+        />
+
+        <div
+          class="absolute bottom-6 left-6 bg-white shadow-lg rounded-2xl p-4 z-20"
+        >
+          <p class="font-bold text-slate-800">🎓 +12 000 inscrits</p>
+          <p class="text-sm text-slate-500">ce mois-ci</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-slate-50 py-24">
+  <div class="page-content">
+    <div
+      class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10"
+    >
+      <div>
+        <span class="section-pill">Cours recommandés</span>
+        <h2 class="section-heading mt-6">Découvrez les meilleurs cours</h2>
+      </div>
+      <a href="/formations/" class="button-secondary">Voir tous les cours</a>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {% for course in featured_courses|slice:":5" %}
+      <article class="site-card">
+        {% if course.youtube_thumbnail %}
+        <a
+          href="{% url 'course_detail' course.id %}"
+          class="block overflow-hidden rounded-[28px] mb-4"
+        >
+          <img
+            src="{{ course.youtube_thumbnail }}"
+            alt="{{ course.title }}"
+            class="w-full h-44 object-cover transition duration-300 hover:scale-105"
+          />
+        </a>
+        {% endif %}
+        <div class="site-card-body">
+          <div
+            class="text-sm uppercase tracking-[0.18em] font-semibold text-orange-600 mb-3"
+          >
+            {{ course.category.name }}
+          </div>
+          <h3 class="site-card-title">{{ course.title }}</h3>
+          <p class="site-card-text">
+            {{ course.description|truncatewords:15 }}
+          </p>
+          <div class="mt-6 flex items-center justify-between gap-3">
+            <span class="site-card-meta">Accès immédiat</span>
+            <a
+              href="{% url 'course_detail' course.id %}"
+              class="button-primary"
+            >
+              Voir
             </a>
           </div>
         </div>
-      </div>
-      {% empty %}
-      <div class="cours-empty">
-        <i class="fas fa-graduation-cap" style="font-size:32px;margin-bottom:12px;display:block;color:#e5e7eb"></i>
-        Aucun cours à la une pour le moment.
-      </div>
+      </article>
       {% endfor %}
     </div>
   </div>
 </section>
 
-<!-- ── PLATEFORME ── -->
-<section class="pg-section plateforme" id="plateforme">
-  <div class="pg-section-inner">
-    <div class="plat-grid reveal">
-      <div class="plat-img-wrap">
-        <img src="{% static 'main/images/heros2.jpg' %}" class="plat-img" alt="Plateforme">
-        <div class="plat-img-badge">
-          <span class="num">5 000+</span>
-          <span class="lbl">Apprenants</span>
+<section class="bg-white py-24">
+  <div class="page-content">
+    <div class="text-center">
+      <span class="section-pill">Explorez nos thèmes</span>
+      <h2 class="section-heading mt-6">
+        Des domaines essentiels pour votre projet professionnel
+      </h2>
+      <p class="section-copy mx-auto">
+        Choisissez un parcours adapté à vos objectifs, avec des ressources
+        claires et un accompagnement simple.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-6 lg:grid-cols-3">
+      <article class="site-card">
+        <div class="site-card-body">
+          <div class="mb-5 flex items-center gap-3">
+            <span class="h-1.5 w-14 rounded-full bg-orange-500"></span>
+            <span
+              class="text-xs uppercase tracking-[0.24em] text-orange-600 font-semibold"
+              >Thème clé</span
+            >
+          </div>
+          <div class="site-card-title">Développement web</div>
+          <p class="site-card-text">
+            Apprenez à construire des applications modernes avec HTML, CSS,
+            JavaScript et Django.
+          </p>
         </div>
-      </div>
+      </article>
+      <article class="site-card">
+        <div class="site-card-body">
+          <div class="mb-5 flex items-center gap-3">
+            <span class="h-1.5 w-14 rounded-full bg-orange-500"></span>
+            <span
+              class="text-xs uppercase tracking-[0.24em] text-orange-600 font-semibold"
+              >Thème clé</span
+            >
+          </div>
+          <div class="site-card-title">Design & UX</div>
+          <p class="site-card-text">
+            Maîtrisez les bases du design pour créer des interfaces claires et
+            attractives.
+          </p>
+        </div>
+      </article>
+      <article class="site-card">
+        <div class="site-card-body">
+          <div class="mb-5 flex items-center gap-3">
+            <span class="h-1.5 w-14 rounded-full bg-orange-500"></span>
+            <span
+              class="text-xs uppercase tracking-[0.24em] text-orange-600 font-semibold"
+              >Thème clé</span
+            >
+          </div>
+          <div class="site-card-title">Marketing digital</div>
+          <p class="site-card-text">
+            Découvrez les stratégies pour promouvoir un projet et toucher votre
+            audience.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="bg-slate-50 py-24">
+  <div class="page-content">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] items-center">
       <div>
-       
-        <h2 class="plat-title">Apprendre efficacement et durablement</h2>
-        <p class="plat-text">Une plateforme conçue pour vous accompagner pas à pas, avec des formations claires, structurées et orientées résultats concrets.</p>
-        <p class="plat-text">Progressez à votre rythme, accédez aux cours, développez des compétences recherchées et construisez votre avenir professionnel.</p>
-        <div class="plat-pills">
-          <span class="plat-pill">Apprentissage à votre rythme</span>
-          <span class="plat-pill">Projets pratiques</span>
-          <span class="plat-pill">Mentors experts</span>
-          <span class="plat-pill">Certificats inclus</span>
+        <span class="section-pill">Pourquoi Kha Learning</span>
+        <h2 class="section-heading mt-6">
+          Une plateforme professionnelle pour apprendre vite
+        </h2>
+        <p class="section-copy">
+          Des parcours bien organisés, des contenus concrets et un design propre
+          pour avancer facilement sur tous les écrans.
+        </p>
+        <div class="mt-8">
+          <a href="/formations/" class="button-primary">Commencer maintenant</a>
         </div>
-        <a href="formations" class="plat-btn">
-          Explorer les formations <i class="fas fa-arrow-right"></i>
-        </a>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2">
+        <article class="site-card">
+          <div class="site-card-body">
+            <div class="site-card-title">Accès immédiat</div>
+            <p class="site-card-text">
+              Retrouvez vos cours rapidement et commencez à apprendre sans
+              attendre.
+            </p>
+          </div>
+        </article>
+        <article class="site-card">
+          <div class="site-card-body">
+            <div class="site-card-title">Parcours clair</div>
+            <p class="site-card-text">
+              Une progression logique avec des objectifs définis à chaque étape.
+            </p>
+          </div>
+        </article>
       </div>
     </div>
   </div>
 </section>
-
-<!-- ── TÉMOIGNAGES ── -->
-<section class="pg-section temoignages" id="temoignages">
-  <div class="pg-section-inner">
-    <div class="pg-header reveal">
-      <h2 class="pg-title">Ils en parlent <span>mieux que nous</span></h2>
-      <div class="pg-line"></div>
-      <p class="pg-desc">Les retours authentiques de nos apprenants sur leur expérience de formation.</p>
-    </div>
-    <div class="testi-wrapper reveal">
-      <div class="testi-card" id="testi-card"></div>
-      <div class="testi-pager" id="testi-pager"></div>
-    </div>
-  </div>
-</section>
-
-</div><!-- end .pg -->
-
-<script>
-/* ── HERO CAROUSEL ── */
-(function(){
-  const slides = document.querySelectorAll('.hero-slide');
-  const dots   = document.querySelectorAll('.hero-dot');
-  const descs  = [
-    'Formations pratiques pour le digital moderne, adaptées à votre rythme.',
-    'Des projets réels pour progresser rapidement et concrètement.',
-    'Une communauté engagée et motivée pour avancer ensemble.'
-  ];
-  const descEl = document.getElementById('hero-desc');
-  let cur = 0;
-
-  function goTo(i) {
-    slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
-    cur = i;
-    slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
-    if(descEl) descEl.textContent = descs[cur];
-  }
-
-  dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
-  setInterval(() => goTo((cur + 1) % slides.length), 7000);
-})();
-
-/* ── TÉMOIGNAGES ── */
-(function(){
-  const testimonials = [
-    { initial:'E', name:'Emmanuel GUERIN',  date:'10 févr. 2025', stars:5, course:'Python',            text:'Formation très complète avec mentorats, quiz et exercices pratiques. Je recommande vivement !' },
-    { initial:'A', name:'Awa Ndiaye',        date:'02 mars 2025',  stars:5, course:'Développement Web', text:'Excellente pédagogie, projets concrets et très bien expliqués. J\'ai décroché mon premier stage !' },
-    { initial:'M', name:'Mamadou DIA',       date:'15 mars 2025',  stars:4, course:'Analyse de données', text:'Les exercices pratiques m\'ont beaucoup aidé à comprendre les concepts. Formateur très disponible.' },
-    { initial:'S', name:'Seynabou FALL',     date:'20 mars 2025',  stars:5, course:'Cybersécurité',     text:'Contenu très structuré, facilement compréhensible même pour débutants. Excellent investissement.' },
-    { initial:'O', name:'Ousseynou SALL',    date:'28 mars 2025',  stars:5, course:'Frontend',          text:'Projets concrets et accompagnement clair. Idéal pour progresser rapidement et efficacement.' }
-  ];
-
-  const card  = document.getElementById('testi-card');
-  const pager = document.getElementById('testi-pager');
-  let idx = 0;
-
-  function render(i){
-    const t = testimonials[i];
-    card.innerHTML = `
-      <div class="testi-top">
-        <div class="testi-avatar">${t.initial}</div>
-        <div>
-          <div class="testi-name">${t.name}</div>
-          <div class="testi-date">${t.date}</div>
-        </div>
-      </div>
-      <div class="testi-stars">${'★'.repeat(t.stars)}${'☆'.repeat(5-t.stars)}</div>
-      <div class="testi-course">${t.course}</div>
-      <p class="testi-text">${t.text}</p>
-    `;
-    Array.from(pager.children).forEach((b,j) => b.classList.toggle('active', j===i));
-  }
-
-  testimonials.forEach((_,i) => {
-    const b = document.createElement('button');
-    b.className = 'testi-dot';
-    b.setAttribute('aria-label', `Témoignage ${i+1}`);
-    b.onclick = () => { idx = i; render(i); };
-    pager.appendChild(b);
-  });
-
-  render(0);
-
-  setInterval(() => { idx = (idx+1) % testimonials.length; render(idx); }, 6000);
-})();
-
-/* ── REVEAL ON SCROLL ── */
-(function(){
-  const els = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if(e.isIntersecting){
-        setTimeout(() => e.target.classList.add('visible'), i * 100);
-        obs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  els.forEach(el => obs.observe(el));
-})();
-</script>
 
 {% endblock %}

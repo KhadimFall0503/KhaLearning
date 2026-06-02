@@ -8,7 +8,9 @@ urlpatterns = [
     path('formations/', views.formations, name='formations'),
     path('ressources/', views.ressources, name='ressources'), 
     path('apprentissage/', views.apprentissage, name='apprentissage'), 
+    path('assistant/', views.assistant, name='assistant'),
     path('contact/', views.contact, name='contact'),
+    path('register/', views.register, name='register'),
 
     # ================= MON APPRENTISSAGE =================
     path('apprentissage/add/<int:course_id>/', views.add_to_learning, name='add_to_learning'),

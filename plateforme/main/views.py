@@ -1,6 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
 from django.core.paginator import Paginator
+from django.db.models import Q
 from .models import Contact, Course, Category, Resource, ResourceCategory, Learning
 from .utils import fetch_youtube_data  # fonction pour récupérer infos YouTube
 
@@ -61,12 +64,25 @@ def formations(request):
 
     query = request.GET.get('q')
     if query:
-        courses = courses.filter(title__icontains=query)
+        courses = courses.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+
+    page_number = request.GET.get('page', 1)
+    paginator = Paginator(courses, 6)
+    page_obj = paginator.get_page(page_number)
+
+    query_params = request.GET.copy()
+    if 'page' in query_params:
+        query_params.pop('page')
+    querystring = query_params.urlencode()
 
     context = {
-        'courses': courses,
+        'courses': page_obj.object_list,
         'categories': categories,
         'selected_category': selected_category,
+        'page_obj': page_obj,
+        'querystring': querystring,
     }
     return render(request, 'main/formations.html', context)
 
@@ -108,10 +124,28 @@ def contact(request):
 
 
 # ================= MON APPRENTISSAGE =================
-@login_required
 def apprentissage(request):
-    courses = [l.course for l in request.user.learning_courses.all()]
+    courses = []
+    if request.user.is_authenticated:
+        courses = [l.course for l in request.user.learning_courses.all()]
     return render(request, 'main/apprentissage.html', {'courses': courses})
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('apprentissage')
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'main/register.html', {'form': form})
+
+
+def assistant(request):
+    return render(request, 'main/assistant.html')
 
 
 @login_required

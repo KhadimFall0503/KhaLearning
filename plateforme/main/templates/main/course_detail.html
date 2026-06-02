@@ -1,38 +1,37 @@
 {% extends 'main/base.html' %} {% load static %} {% block content %}
 
-<!-- Header du cours avec fond sombre -->
-<div class="relative bg-gray-900 pt-20 pb-12">
-  <div class="max-w-7xl mx-auto px-6 space-y-12 text-white">
+<!-- Header du cours -->
+<div class="relative bg-white pt-28 pb-12">
+  <div class="max-w-7xl mx-auto px-6 space-y-12 text-slate-900">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
       <!-- Infos texte -->
       <div class="md:col-span-2 space-y-4">
-        <span
-          class="inline-block bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full"
-        >
+        <span class="inline-block bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full">
           {{ course.category.name }}
         </span>
         <h1 class="text-4xl md:text-5xl font-extrabold">{{ course.title }}</h1>
-        <p class="text-gray-200">{{ course.description }}</p>
+        <p class="text-slate-600">{{ course.description }}</p>
 
-        <div class="flex flex-wrap items-center gap-4 text-gray-300">
+        <div class="flex flex-wrap items-center gap-4 text-slate-600">
           <span>⏱ Durée : {{ course.duration_display }}</span>
           <span>📘 {{ course.lessons_count|default:"1 Leçon" }}</span>
         </div>
 
-        <div class="flex gap-4 mt-4">
+        <div class="flex flex-wrap gap-4 mt-4">
           {% if course.youtube_id %}
           <a
             href="https://www.youtube.com/watch?v={{ course.youtube_id }}"
             target="_blank"
-            class="px-6 py-3 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-lg hover:from-orange-500 hover:to-orange-700 transition inline-block"
+            class="button-primary"
           >
             Démarrer
           </a>
           {% endif %}
           <a href="{% url 'add_to_learning' course.id %}"
-   class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-200 transition">
-   Mettre dans liste apprentissage
-</a>
+            class="button-secondary"
+          >
+            Mettre dans liste apprentissage
+          </a>
         </div>
       </div>
 

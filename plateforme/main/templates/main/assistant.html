@@ -1,0 +1,99 @@
+{% extends 'main/base.html' %}
+{% block title %}
+<title>Kha Learning — Assistant IA</title>
+{% endblock %}
+
+{% block content %}
+<section class="bg-white text-slate-900 py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="rounded-[32px] border border-orange-100 bg-white p-8 shadow-[0_25px_75px_-25px_rgba(249,115,22,0.20)]">
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold uppercase tracking-[0.18em] text-orange-700">Kha IA</span>
+          <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-slate-950">Kha IA Assistante</h1>
+          <p class="mt-4 text-slate-600 leading-7">Discutez avec Kha IA pour obtenir de l’aide sur les formations, les cours, le parcours d’apprentissage ou le site.</p>
+        </div>
+        <div class="rounded-3xl bg-orange-50 p-5 text-slate-900 ring-1 ring-orange-100">
+          <p class="text-sm uppercase tracking-[0.2em] text-orange-600">Conseil rapide</p>
+          <ul class="mt-4 space-y-3 text-slate-700">
+            <li>➡️ Tapez un sujet de formation</li>
+            <li>➡️ Demandez comment rejoindre un cours</li>
+            <li>➡️ Posez une question sur le site</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-[32px] bg-slate-50 p-6 shadow-xl shadow-orange-200/40 ring-1 ring-orange-100">
+        <div id="assistant-messages" class="flex h-[520px] flex-col gap-4 overflow-y-auto rounded-3xl border border-orange-100 bg-white p-5 text-sm text-slate-900">
+          <div class="rounded-3xl bg-orange-600 p-4 text-white shadow-sm">
+            Bonjour ! Je suis Kha IA, votre assistante pour le site. Posez-moi une question sur les formations ou le parcours d’apprentissage.</div>
+        </div>
+
+        <form id="assistant-form" class="mt-6 grid gap-3 sm:grid-cols-[1fr_auto]">
+          <label for="assistant-input" class="sr-only">Envoyer un message</label>
+          <input id="assistant-input" type="text" placeholder="Écrire un message..." class="min-h-[56px] rounded-3xl border border-orange-200 bg-white px-5 py-4 text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20" />
+          <button type="submit" class="button-primary px-6 py-4">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('assistant-form');
+  const messages = document.getElementById('assistant-messages');
+  const input = document.getElementById('assistant-input');
+
+  const responses = [
+    {
+      test: /(cours|formation|apprendre|niveau)/i,
+      answer: "Je peux vous aider à trouver une formation adaptée. Essayez de me dire le domaine ou le mot-clé que vous cherchez."
+    },
+    {
+      test: /(contact|nous joindre|adresse|email|téléphone)/i,
+      answer: "Pour nous contacter, rendez-vous sur la page Contact. Je peux aussi vous indiquer comment accéder au formulaire."
+    },
+    {
+      test: /(sombre|dark|clair|thème)/i,
+      answer: "Le thème sombre est disponible sur tout le site. Utilisez le bouton de bascule dans la barre de navigation pour alterner entre sombre et clair."
+    },
+    {
+      test: /(apprentissage|mon apprentissage|suivi)/i,
+      answer: "La page Mon apprentissage affiche vos cours ajoutés. Connectez-vous pour y retrouver votre progression."
+    }
+  ];
+
+  const addMessage = (text, isUser) => {
+    const bubble = document.createElement('div');
+    bubble.className = isUser ? 'self-end rounded-3xl bg-orange-600 px-5 py-4 text-white shadow-lg shadow-orange-500/10' : 'self-start rounded-3xl bg-slate-800 px-5 py-4 text-slate-100 shadow-sm';
+    bubble.textContent = text;
+    messages.appendChild(bubble);
+    messages.scrollTop = messages.scrollHeight;
+  };
+
+  const getReply = (text) => {
+    const match = responses.find((item) => item.test.test(text));
+    return match ? match.answer : 'Je suis là pour vous aider ! Posez-moi une question sur les formations ou le site, et je vous répondrai.';
+  };
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+
+    addMessage(question, true);
+    input.value = '';
+
+    const replyBubble = document.createElement('div');
+    replyBubble.className = 'self-start rounded-3xl bg-slate-800 px-5 py-4 text-slate-100 shadow-sm';
+    replyBubble.textContent = 'Je réfléchis...';
+    messages.appendChild(replyBubble);
+    messages.scrollTop = messages.scrollHeight;
+
+    setTimeout(() => {
+      replyBubble.textContent = getReply(question);
+      messages.scrollTop = messages.scrollHeight;
+    }, 900);
+  });
+</script>
+{% endblock %}

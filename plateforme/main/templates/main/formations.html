@@ -1,10 +1,10 @@
 {% extends 'main/base.html' %} {% load static %} {% block content %}
 
 <!-- ================= HERO ================= -->
-<section class="bg-gray-900 text-white py-28">
+<section class="bg-white text-slate-900 py-28">
   <div class="max-w-7xl mx-auto px-6 text-center">
     <h1 class="text-5xl font-extrabold mb-6">Toutes nos formations</h1>
-    <p class="text-gray-300 text-lg">
+    <p class="text-slate-600 text-lg">
       Parcourez nos formations pour développer vos compétences dans divers
       domaines
     </p>
@@ -16,14 +16,14 @@
   <div class="flex flex-wrap justify-center gap-4">
     <a
       href="{% url 'formations' %}"
-      class="px-4 py-2 rounded border hover:bg-orange-500 hover:text-white {% if not selected_category %}bg-orange-500 text-white{% endif %}"
+      class="px-4 py-2 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-100 transition {% if not selected_category %}bg-orange-600 text-white border-orange-600{% endif %}"
     >
       Toutes
     </a>
     {% for category in categories %}
     <a
       href="?category={{ category.id }}"
-      class="px-4 py-2 rounded border hover:bg-orange-500 hover:text-white {% if selected_category and selected_category.id == category.id %}bg-orange-500 text-white{% endif %}"
+      class="px-4 py-2 rounded-full border border-slate-200 text-slate-700 hover:bg-slate-100 transition {% if selected_category and selected_category.id == category.id %}bg-orange-600 text-white border-orange-600{% endif %}"
     >
       {{ category.name }}
     </a>
@@ -32,25 +32,42 @@
 </section>
 
 <!-- ================= SEARCH ================= -->
-<section class="max-w-7xl mx-auto px-6 py-4">
-  <form method="get" class="flex justify-center">
-    {% if selected_category %}
-    <input type="hidden" name="category" value="{{ selected_category.id }}" />
-    {% endif %}
-    <input
-      type="text"
-      name="q"
-      placeholder="Rechercher une formation..."
-      value="{{ request.GET.q }}"
-      class="border rounded-l px-4 py-2 w-2/3 focus:outline-none focus:ring-2 focus:ring-orange-500"
-    />
-    <button
-      type="submit"
-      class="bg-orange-500 text-white px-4 py-2 rounded-r hover:bg-orange-600 transition"
-    >
-      Rechercher
-    </button>
-  </form>
+<section class="max-w-7xl mx-auto px-6 py-6">
+  <div class="rounded-[28px] bg-slate-900/95 border border-slate-800 shadow-xl p-5 sm:p-6">
+    <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div>
+        <span class="inline-flex items-center rounded-full bg-orange-100 px-3 py-1 text-sm font-semibold uppercase tracking-[0.18em] text-orange-700">Recherche</span>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-white">Trouvez votre prochaine formation</h2>
+        <p class="mt-2 max-w-2xl text-slate-300">Cherchez par titre ou mot-clé pour affiner instantanément les résultats.</p>
+      </div>
+      <div class="text-right text-sm text-slate-400">
+        {% if selected_category %}
+        Filtré sur « <strong class="text-white">{{ selected_category.name }}</strong> »
+        {% endif %}
+      </div>
+    </div>
+
+    <form method="get" class="mt-6 grid gap-3 sm:grid-cols-[1fr_auto] items-center">
+      {% if selected_category %}
+      <input type="hidden" name="category" value="{{ selected_category.id }}" />
+      {% endif %}
+      <label for="search-query" class="sr-only">Rechercher une formation</label>
+      <div class="relative rounded-3xl bg-slate-800 border border-slate-700 focus-within:border-orange-500 focus-within:ring-2 focus-within:ring-orange-500/20">
+        <span class="pointer-events-none absolute inset-y-0 left-4 flex items-center text-slate-400">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <input
+          id="search-query"
+          type="text"
+          name="q"
+          placeholder="Rechercher une formation..."
+          value="{{ request.GET.q|default:'' }}"
+          class="w-full rounded-3xl border-0 bg-transparent py-4 pl-12 pr-4 text-slate-100 placeholder:text-slate-500 focus:outline-none"
+        />
+      </div>
+      <button type="submit" class="button-primary px-8 py-4 w-full sm:w-auto">Rechercher</button>
+    </form>
+  </div>
 </section>
 
 <!-- ================= TOUS LES COURS ================= -->
@@ -58,12 +75,10 @@
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {% for course in courses %}
-      <div
-        class="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-1 overflow-hidden"
-      >
+      <article class="site-card overflow-hidden">
         {% if course.youtube_url %}
         <span
-          class="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full z-10"
+          class="absolute top-4 left-4 bg-orange-600 text-white text-xs font-semibold px-3 py-1 rounded-full z-10"
         >
           YouTube
         </span>
@@ -71,34 +86,74 @@
         <a href="{% url 'course_detail' course.id %}">
           <img
             src="{% if course.youtube_thumbnail %}{{ course.youtube_thumbnail }}{% elif course.image %}{{ course.image.url }}{% else %}{% static 'main/images/default-course.jpg' %}{% endif %}"
-            class="w-full h-64 object-cover rounded-t-2xl transition-transform duration-300 hover:scale-105"
+            class="w-full h-64 object-cover transition duration-300 hover:scale-105"
             alt="{{ course.title }} thumbnail"
           />
         </a>
-        <div class="p-6">
-          <h3 class="text-2xl font-bold mb-2 line-clamp-2">
+        <div class="site-card-body">
+          <div class="text-sm uppercase tracking-[0.18em] font-semibold text-orange-600 mb-3">
+            {{ course.category.name }}
+          </div>
+          <h3 class="site-card-title line-clamp-2">
             {{ course.title }}
           </h3>
-          <p class="text-gray-700 mb-4 line-clamp-3">
-            {{ course.description|truncatewords:25 }}
-          </p>
-          <p class="text-sm text-gray-500 mb-4">
-            Catégorie: {{ course.category.name }}
+          <p class="site-card-text line-clamp-3">
+            {{ course.description|default:"Description de la vidéo en attente."|truncatewords:20 }}
           </p>
           <a
             href="{% url 'course_detail' course.id %}"
-            class="inline-block px-5 py-2 bg-gradient-to-r from-orange-400 to-orange-600 text-white rounded-full hover:scale-105 transition transform font-semibold shadow-lg"
+            class="button-primary"
           >
             Voir le cours
           </a>
         </div>
-      </div>
+      </article>
       {% empty %}
       <p class="col-span-full text-center text-gray-500">
         Aucune formation disponible pour le moment.
       </p>
       {% endfor %}
     </div>
+
+    {% if page_obj.has_other_pages %}
+    <div class="max-w-7xl mx-auto px-6 py-6">
+      <nav class="flex flex-col gap-3 items-center justify-between rounded-3xl bg-white border border-slate-200 p-4 shadow-sm sm:flex-row">
+        <p class="text-sm text-slate-500">Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</p>
+        <div class="flex flex-wrap items-center justify-center gap-2">
+          {% if page_obj.has_previous %}
+          <a
+            href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.previous_page_number }}"
+            class="button-secondary px-4 py-2"
+          >
+            Précédent
+          </a>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+            {% if num == page_obj.number %}
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-600 text-white">{{ num }}</span>
+            {% elif num <= page_obj.number|add:2 and num >= page_obj.number|add:-2 %}
+            <a
+              href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ num }}"
+              class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 hover:bg-orange-100"
+            >
+              {{ num }}
+            </a>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+          <a
+            href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.next_page_number }}"
+            class="button-primary px-4 py-2"
+          >
+            Suivant
+          </a>
+          {% endif %}
+        </div>
+      </nav>
+    </div>
+    {% endif %}
   </div>
 </section>
 

@@ -1,91 +1,44 @@
 <!-- templates/main/navbar.html -->
-<nav class="bg-[#0F0F0F]/90 backdrop-blur-sm fixed w-full z-50 border-b border-white/5">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<nav class="bg-white border-b border-slate-200 shadow-sm fixed w-full z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-6">
+    <a href="/" class="text-2xl font-bold tracking-tight text-slate-900">
+      <span class="text-orange-600">Kha</span><span class="text-slate-900">-Learning</span>
+    </a>
 
-    <!-- Logo -->
-   <a href="#" class="text-2xl font-extrabold tracking-wide">
-  <span class="text-orange-500">Kha</span><span class="text-white">-Learning</span>
-</a>
-
-
-    <!-- Menu Desktop -->
-    <div class="hidden md:flex items-center space-x-8 text-gray-200 font-medium">
-      <a href="/"
-        class="pb-1 border-b-2 transition-all duration-300 
-        {% if request.path == '/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
-        Accueil
-      </a>
-
-      <a href="/formations/"
-        class="pb-1 border-b-2 transition-all duration-300 
-        {% if request.path == '/formations/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
-        Formations
-      </a>
-
-      <a href="/ressources/"
-        class="pb-1 border-b-2 transition-all duration-300 
-        {% if request.path == '/ressources/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
-        Ressources
-      </a>
-
-      <a href="/apprentissage/"
-        class="pb-1 border-b-2 transition-all duration-300 
-        {% if request.path == '/apprentissage/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
-        Mon apprentissage
-      </a>
-
-      <a href="/contact/"
-        class="pb-1 border-b-2 transition-all duration-300 
-        {% if request.path == '/contact/' %}border-orange-500 text-white{% else %}border-transparent hover:text-orange-400 hover:border-orange-500{% endif %}">
-        Contact
-      </a>
+    <div class="hidden md:flex items-center gap-8 text-slate-700 font-medium">
+      <a href="{% url 'acceuil' %}" class="pb-1 border-b-2 transition-all duration-300 {% if request.path == '/' %}border-orange-600 text-slate-900{% else %}border-transparent hover:text-slate-900 hover:border-slate-300{% endif %}">Accueil</a>
+      <a href="{% url 'formations' %}" class="pb-1 border-b-2 transition-all duration-300 {% if request.path == '/formations/' %}border-orange-600 text-slate-900{% else %}border-transparent hover:text-slate-900 hover:border-slate-300{% endif %}">Formations</a>
+      <a href="{% url 'ressources' %}" class="pb-1 border-b-2 transition-all duration-300 {% if request.path == '/ressources/' %}border-orange-600 text-slate-900{% else %}border-transparent hover:text-slate-900 hover:border-slate-300{% endif %}">Ressources</a>
+      <a href="{% url 'apprentissage' %}" class="pb-1 border-b-2 transition-all duration-300 {% if request.path == '/apprentissage/' %}border-orange-600 text-slate-900{% else %}border-transparent hover:text-slate-900 hover:border-slate-300{% endif %}">Mon apprentissage</a>
+      <a href="{% url 'contact' %}" class="pb-1 border-b-2 transition-all duration-300 {% if request.path == '/contact/' %}border-orange-600 text-slate-900{% else %}border-transparent hover:text-slate-900 hover:border-slate-300{% endif %}">Contact</a>
     </div>
 
-    <!-- Hamburger Mobile -->
-    <button id="menu-toggle" class="md:hidden text-gray-200 focus:outline-none">
-      <svg id="icon-open" class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2"
-        viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-
-      <svg id="icon-close" class="w-7 h-7 hidden" fill="none" stroke="currentColor" stroke-width="2"
-        viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round"
-          d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" class="button-secondary hidden md:inline-flex px-4 py-3">
+        <i class="fa-solid fa-moon"></i>
+        <span id="theme-toggle-label">Sombre</span>
+      </button>
+      <button id="menu-toggle" class="md:hidden text-slate-700 focus:outline-none">
+        <svg id="icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
   </div>
 
-  <!-- Menu Mobile -->
-  <div id="mobile-menu"
-    class="hidden md:hidden flex flex-col bg-[#0F0F0F]/95 backdrop-blur-lg px-6 pt-2 pb-6 space-y-4 text-gray-200 text-lg">
-    
-    <a href="/"
-      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
-      Accueil
-    </a>
-
-    <a href="/formations/"
-      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
-      Formations
-    </a>
-
-    <a href="/ressources/"
-      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
-      Ressources
-    </a>
-
-    <a href="/apprentissage/"
-      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
-      Mon apprentissage
-    </a>
-
-    <a href="/contact/"
-      class="pb-2 border-b border-white/10 hover:text-orange-400 transition">
-      Contact
-    </a>
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200 px-6 py-4 space-y-3 text-slate-700 text-base">
+    <a href="{% url 'acceuil' %}" class="block pb-2 border-b border-slate-200 hover:text-slate-900 transition">Accueil</a>
+    <a href="{% url 'formations' %}" class="block pb-2 border-b border-slate-200 hover:text-slate-900 transition">Formations</a>
+    <a href="{% url 'ressources' %}" class="block pb-2 border-b border-slate-200 hover:text-slate-900 transition">Ressources</a>
+    <a href="{% url 'apprentissage' %}" class="block pb-2 border-b border-slate-200 hover:text-slate-900 transition">Mon apprentissage</a>
+    <a href="{% url 'contact' %}" class="block pb-2 border-b border-slate-200 hover:text-slate-900 transition">Contact</a>
+    <button id="mobile-theme-toggle" class="w-full inline-flex items-center justify-center gap-2 rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-700 transition hover:bg-slate-100">
+      <i class="fa-solid fa-moon"></i>
+      Thème
+    </button>
   </div>
 
   <script>
@@ -98,6 +51,29 @@
       menu.classList.toggle("hidden");
       openIcon.classList.toggle("hidden");
       closeIcon.classList.toggle("hidden");
+    });
+
+    const themeButtons = document.querySelectorAll("#theme-toggle, #mobile-theme-toggle");
+    const themeLabel = document.getElementById("theme-toggle-label");
+    const themeKey = "khalearning-theme";
+
+    const applyTheme = (theme) => {
+      document.documentElement.classList.toggle("dark", theme === "dark");
+      if (themeLabel) {
+        themeLabel.textContent = theme === "dark" ? "Clair" : "Sombre";
+      }
+      localStorage.setItem(themeKey, theme);
+    };
+
+    const savedTheme = localStorage.getItem(themeKey);
+    const defaultTheme = savedTheme || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    applyTheme(defaultTheme);
+
+    themeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextTheme = document.documentElement.classList.contains("dark") ? "light" : "dark";
+        applyTheme(nextTheme);
+      });
     });
   </script>
 </nav>

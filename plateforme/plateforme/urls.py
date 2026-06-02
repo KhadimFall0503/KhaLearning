@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('khalearning-admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('', include('main.urls')),  # ← inclut les URLs de l'app main
 ]
 
