@@ -1,9 +1,9 @@
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
-from django.core.paginator import Paginator
-from django.db.models import Q
+from django.shortcuts import get_object_or_404, render, redirect # type: ignore
+from django.contrib.auth.decorators import login_required # type: ignore
+from django.contrib.auth.forms import UserCreationForm # type: ignore
+from django.contrib.auth import login # type: ignore
+from django.core.paginator import Paginator # type: ignore
+from django.db.models import Q # type: ignore
 from .models import Contact, Course, Category, Resource, ResourceCategory, Learning
 from .utils import fetch_youtube_data  # fonction pour récupérer infos YouTube
 
